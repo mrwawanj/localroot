@@ -18,4 +18,4 @@
 ## telegram ☎️ @seotampanidaman
 
 ```bash
-sudo bash scripts/main.sh
+bash mainroot.sh | ./mainrot.sh

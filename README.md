@@ -18,5 +18,9 @@
 ## telegram ☎️ @seotampanidaman
 
 ```bash
+
+
+
+```bash
 chmod +x mainroot.sh
 bash mainroot.sh.x | ./mainroot.sh.x

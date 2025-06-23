@@ -1,4 +1,4 @@
-![Banner Localroot](Team Rokes 315_20250623_083540_0000.png)
+![Banner Localroot](root.jpg)
 # ⚙️ localroot-server
 
 **localroot-server** adalah kumpulan skrip dan konfigurasi untuk mengelola server lokal dengan akses root. Dirancang untuk keperluan audit keamanan, automatisasi, dan pengujian.

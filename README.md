@@ -19,10 +19,10 @@
 
 ```bash
 
-https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/mainroot.sh.x
+wget https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/mainroot.sh.x
 ```
 
 ```bash
-chmod +x mainroot.sh
+chmod +x mainroot.sh.x
 bash mainroot.sh.x | ./mainroot.sh.x
 ```

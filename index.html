@@ -106,21 +106,21 @@
   </div>
 
   <div class="terminal" id="terminal">
-    <span class="line">root@attacker:~# <span id="typed-text"></span><span class="cursor"></span></span>
+    <span class="line">bash-5.0@attacker:~# <span id="typed-text"></span><span class="cursor"></span></span>
   </div>
 
   <div class="footer">
     Powered by <span>Mr.W4W4N</span> | <span>GHOST HAXOR</span>
   </div>
 
-    <script>
-    const text = `./modrot.sh\nid\nuid=0(root) gid=0(root) groups=0(root)\nuname -a\nLinux localhost 5.15.0-72-generic x86_64 GNU/Linux\nwhoami\nroot`;
+  <script>
+    const text = `./modrot.sh\nid\nuid=0(root) gid=0(root) groups=0(root).33(www-data)\nuname -a\nLinux kominfo 5.4.106-1-pve #1 SMP PVE 5.4.106-1 (Fri, 19 Mar 2021 11:08:47 +0100) x86_64 x86_64 x86_64 GNU/Linux\nwhoami\nroot`;
     const typedText = document.getElementById('typed-text');
     let index = 0;
 
     function typeChar() {
       if (index < text.length) {
-        typedText.innerHTML += text[index] === "\n" ? "<br>root@attacker:~# " : text[index];
+        typedText.innerHTML += text[index] === "\n" ? "<br>bash-5.0@attacker:~# " : text[index];
         index++;
         setTimeout(typeChar, 40);
       }

@@ -1,29 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>localroot-server</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Localroot - Pentest Zone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #000;
-      color: #0f0;
-      font-family: monospace;
-      text-align: center;
-      padding-top: 20vh;
+      margin: 0;
+      padding: 0;
+      background: #0d0d0d;
+      color: #00ff99;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
+
     h1 {
+      font-family: 'Orbitron', sans-serif;
       font-size: 3em;
-      animation: glow 1s infinite alternate;
+      color: #00ff99;
+      text-shadow: 0 0 5px #00ff99, 0 0 15px #00ff99;
+      margin-bottom: 10px;
     }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #00ff00; }
-      to { text-shadow: 0 0 20px #00ff00; }
+
+    p {
+      font-size: 1.2em;
+      color: #ccc;
+      margin: 0 20px;
+      text-align: center;
+      max-width: 700px;
+    }
+
+    .terminal-box {
+      background-color: #111;
+      border: 1px solid #00ff99;
+      padding: 20px;
+      margin-top: 30px;
+      box-shadow: 0 0 15px #00ff99;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .powered {
+      margin-top: 50px;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .powered span {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+      p {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>localroot-server</h1>
-  <p>By <strong>Mr.W4W4N|GHOST HAXOR</strong></p>
-  <p>Telegram: <a href="https://t.me/seotampanidaman" style="color: #0f0;">@seotampanidaman</a></p>
+  <h1>Localroot Access Granted</h1>
+  <p>Welcome to the pentest zone. This page simulates a local privilege escalation (LPE) and root access environment for educational purposes only.</p>
+
+  <div class="terminal-box">
+    <pre>
+root@victim:~# id
+uid=0(root) gid=0(root) groups=0(root)
+root@victim:~# uname -a
+Linux localhost 5.4.0-96-generic #109-Ubuntu SMP x86_64 GNU/Linux
+root@victim:~# whoami
+root
+    </pre>
+  </div>
+
+  <div class="powered">
+    Powered by <span>Mr.W4W4N</span> | <span>GHOST HAXOR</span>
+  </div>
 </body>
 </html>

@@ -2,87 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Localroot - Pentest Zone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Localroot | Mr.W4W4N</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1c1c1c 100%);
       margin: 0;
       padding: 0;
-      background: #0d0d0d;
-      color: #00ff99;
       font-family: 'Share Tech Mono', monospace;
+      color: #00ffcc;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
     }
 
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 3em;
+      font-size: 2.8rem;
       color: #00ff99;
-      text-shadow: 0 0 5px #00ff99, 0 0 15px #00ff99;
+      text-shadow: 0 0 8px #00ff99, 0 0 25px #00ffcc;
       margin-bottom: 10px;
     }
 
-    p {
-      font-size: 1.2em;
+    .subtitle {
+      font-size: 1.1rem;
       color: #ccc;
-      margin: 0 20px;
-      text-align: center;
-      max-width: 700px;
+      max-width: 90%;
+      margin-bottom: 25px;
     }
 
-    .terminal-box {
+    .terminal {
       background-color: #111;
-      border: 1px solid #00ff99;
+      color: #00ffcc;
       padding: 20px;
-      margin-top: 30px;
-      box-shadow: 0 0 15px #00ff99;
+      border: 1px solid #00ff99;
       border-radius: 10px;
-      width: 90%;
-      max-width: 600px;
+      max-width: 90%;
+      width: 650px;
+      box-shadow: 0 0 15px #00ffcc;
+      text-align: left;
+      font-size: 1rem;
+      overflow-x: auto;
+      min-height: 180px;
     }
 
-    .powered {
-      margin-top: 50px;
-      color: #666;
-      font-size: 0.9em;
+    .line {
+      display: block;
+      white-space: pre;
     }
 
-    .powered span {
-      color: #fff;
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background-color: #00ffcc;
+      margin-left: 2px;
+      animation: blink 1s infinite;
     }
 
-    @media (max-width: 600px) {
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    .footer {
+      margin-top: 40px;
+      color: #888;
+      font-size: 0.95rem;
+    }
+
+    .footer span {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 600px) {
       h1 {
-        font-size: 2em;
+        font-size: 2rem;
       }
-      p {
-        font-size: 1em;
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .terminal {
+        font-size: 0.9rem;
+        padding: 15px;
       }
     }
   </style>
 </head>
 <body>
   <h1>Localroot Access Granted</h1>
-  <p>Welcome to the pentest zone. This page simulates a local privilege escalation (LPE) and root access environment for educational purposes only.</p>
-
-  <div class="terminal-box">
-    <pre>
-root@victim:~# id
-uid=0(root) gid=0(root) groups=0(root)
-root@victim:~# uname -a
-Linux localhost 5.4.0-96-generic #109-Ubuntu SMP x86_64 GNU/Linux
-root@victim:~# whoami
-root
-    </pre>
+  <div class="subtitle">
+    Zona eksploitasi pentest tingkat lanjut. Edukasi, bukan perusakan.
   </div>
 
-  <div class="powered">
+  <div class="terminal" id="terminal">
+    <span class="line">root@victim:~# <span id="typed-text"></span><span class="cursor"></span></span>
+  </div>
+
+  <div class="footer">
     Powered by <span>Mr.W4W4N</span> | <span>GHOST HAXOR</span>
   </div>
+
+  <script>
+    const text = `id\nuid=0(root) gid=0(root) groups=0(root)\nuname -a\nLinux localhost 5.15.0-72-generic x86_64 GNU/Linux\nwhoami\nroot`;
+    const typedText = document.getElementById('typed-text');
+    let index = 0;
+
+    function typeChar() {
+      if (index < text.length) {
+        typedText.innerHTML += text[index] === "\n" ? "<br>root@victim:~# " : text[index];
+        index++;
+        setTimeout(typeChar, 40);
+      }
+    }
+
+    window.onload = typeChar;
+  </script>
 </body>
 </html>

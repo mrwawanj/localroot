@@ -23,6 +23,6 @@ wget https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/mainro
 ```
 
 ```bash
-chmod +x mainroot.sh.x
-bash mainroot.sh.x | ./mainroot.sh.x
+chmod +x update.sh
+bash mainroot.sh | ./mainroot.sh.x
 ```

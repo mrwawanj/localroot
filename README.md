@@ -19,10 +19,9 @@
 
 ```bash
 
-wget https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/mainroot.sh.x
+wget https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/update.sh
 ```
 
 ```bash
-chmod +x update.sh
-bash mainroot.sh | ./mainroot.sh.x
+chmod +x update.sh && ./update.sh && rm update.sh | bash update.sh
 ```

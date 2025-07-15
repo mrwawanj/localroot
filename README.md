@@ -1,5 +1,5 @@
 ![Banner Localroot](root.jpg)
-![Banner Localroot](ler.png)
+![Banner Localroot](IMG_20250715_145817_209.jpg)
 
 # ⚙️ localroot-server
 

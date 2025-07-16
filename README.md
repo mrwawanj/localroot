@@ -1,7 +1,7 @@
 ![Banner Localroot](root.jpg)
 ![Banner Localroot](IMG_20250715_145817_209.jpg)
 
- Author : Ghost Haxor|Mr.W4W4N
+ Author : Ghost Haxor | Mr.W4W4N
 # ⚙️ localroot-server
 
 **localroot-server** adalah kumpulan skrip dan konfigurasi untuk mengelola server lokal dengan akses root. Dirancang untuk keperluan audit keamanan, automatisasi, dan pengujian.

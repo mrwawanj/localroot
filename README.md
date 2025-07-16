@@ -14,7 +14,7 @@
 - 🔄 Manajemen user & permission
 - 🧪 Skrip bypass otentikasi (testing)
 - 📁 Kontrol file & konfigurasi sistem
-
+- 🔎 pentester 49 Exploit karnel
 ---
 
 ## telegram ☎️ @seotampanidaman

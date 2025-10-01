@@ -22,7 +22,7 @@
 
 ```bash
 
-wget https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/ghost.sh
+wget https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/mainroot.sh
 ```
 
 ```bash

